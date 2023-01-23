@@ -11,7 +11,7 @@
 // Demonstrates:
 // Defining a struct and declaring a struct object
 // Accessing the members of a struct (which are all public by default)
-// Passing a struct object by value, by reference and, by pointer
+// Passing a struct object by value and by reference
 // Arrays of Struct
 
 // Structs are normally used when we want to store a data structure or record of data -
@@ -25,7 +25,7 @@ using namespace std;
 const int ARRAY_SIZE = 3; //
 
 // Define a Movie_struct data type.
-// It will be visible from here to teh end of this file. (called scope)
+// It will be visible from here to the end of this file. (called scope)
 //
 struct Movie_struct {
     string title;       // fields are public by default
@@ -35,7 +35,6 @@ struct Movie_struct {
 // function prototypes
 void print_movie_pass_by_value(Movie_struct movie);
 void update_movie_pass_by_reference(Movie_struct& movie);
-void update_movie_pass_by_pointer(Movie_struct* pMovie);
 void populateMovieArray(Movie_struct movieArray[], int size);
 
 int main()
@@ -73,7 +72,6 @@ int main()
     update_movie_pass_by_reference( scifiMovie );
     // note that the call looks the same as for "by value", but the parameter declaration is different
 
-    update_movie_pass_by_pointer( &scifiMovie ); // get address of struct, and pass it into a pointer parameter
 
     ///Array of struct ////////////////////////////////////////////////
 
@@ -140,29 +138,13 @@ void update_movie_pass_by_reference( Movie_struct& movie) {   // reference to a 
     // the updates have been entered directly into the original movie struct object.
 }
 
-// Pass-by-Pointer (pass a pointer to a Movie_struct)
-// A pointer parameter can be used when passing a Movie_struct into a function.
-// The pointer parameter receives the address of the movie object, and it can
-// be used to read and update the contents in the structure.
-// Note the Member Access Operator "->" is used to access individual fields
-// when dealing with pointers.
-// 
-// If we want to read but not modify the movie object passed in, then we declare the pointer
-// as type "pointer to a constant movie struct", as follows
-// fn( const Movie_struct* pMovie )
-//
-
-void update_movie_pass_by_pointer( Movie_struct* pMovie ) {
-     pMovie->title = "Avatar 2";
-     pMovie->year = 2023;
-}
 
 // Passing an Array (using Array Notation)
 //
 // When we pass an array in C++, what is passed is actually the address of
 // the start of the array. This gives the function access to the array elements.
 // However, we normally declare this using array-notation,
-// and then we access the array elements using array-notation and normal array indexing.
+// and then we access the array elements using array-notation and array indexing.
 
 void populateMovieArray( Movie_struct movieArray[], int size) {
     movieArray[0].title = "Jaws";
@@ -174,5 +156,4 @@ void populateMovieArray( Movie_struct movieArray[], int size) {
     movieArray[2].title = "Rug Rats";
     movieArray[2].year = 1995;
 }
-
 
